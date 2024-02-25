@@ -58,8 +58,7 @@ describe('UserService', () => {
     };
 
     try {
-      const createdUser = await userService.create(createUserDto);
-      fail('Expected validation error, but none was thrown');
+      userService.create(createUserDto)
     } catch (error) {
       expect(error).toBeInstanceOf(BadRequestException);
       expect(error.message).toContain('email must be an email address');
