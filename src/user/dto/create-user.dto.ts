@@ -3,11 +3,11 @@ import { IsEmail, IsEnum, IsNotEmpty, IsString } from "class-validator"
 export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
-    name: String;
+    name: string;
 
     @IsEmail()
     @IsNotEmpty()
-    email: String;
+    email: string;
 
     @IsEnum(["admin", "user"], {
         message: "valid role required"
