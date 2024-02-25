@@ -7,7 +7,7 @@ export class UserService {
   private users = []
 
   create(createUserDto: CreateUserDto) {
-    var newId = 1;
+    let newId = 1;
 
     if (this.users.length != 0) {
       const usersSortedByIdDesc = [...this.users].sort((a, b) => b.id - a.id)
