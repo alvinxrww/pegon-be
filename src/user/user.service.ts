@@ -23,7 +23,7 @@ export class UserService {
     return newUser;
   }
 
-  findAll(role?) {
+  findAll(role?: string) {
     if (role) return this.users.filter(user => user.role === role)
     return this.users
   }
