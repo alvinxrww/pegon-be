@@ -39,7 +39,6 @@ export class UserService {
       if (user.id === id) {
         return { ...user, ...updateUserDto }
       }
-      return user
     })
 
     return this.findOne(id);

@@ -37,6 +37,29 @@ describe('UserService', () => {
     expect(users).toEqual([createdUser, createdUser2]);
   });
 
+  it('should get a user by Role', () => {
+    const createUserDto: CreateUserDto = {
+      name: 'User for Testing',
+      email: 'user@test.com',
+      role: 'admin',
+    };
+
+    const createUserDto2: CreateUserDto = {
+      name: 'User2 for Testing',
+      email: 'user2@test.com',
+      role: 'user',
+    };
+
+    const createdAdmin = userService.create(createUserDto);
+    const createdUser = userService.create(createUserDto2);
+
+    const admin = userService.findAll('admin');
+    const user = userService.findAll('user');
+    
+    expect(admin).toEqual([createdAdmin]);
+    expect(user).toEqual([createdUser]);
+  });
+
   it('should create a new user', () => {
     const createUserDto: CreateUserDto = {
       name: 'User for Testing',
@@ -75,6 +98,9 @@ describe('UserService', () => {
     const user = userService.findOne(1);
     expect(user).toBeDefined();
     expect(user.id).toEqual(createdUser.id);
+
+    const findNotExist = () => userService.findOne(2);
+    expect(findNotExist).toThrow(NotFoundException);
   });
 
   it('should update a user', () => {
